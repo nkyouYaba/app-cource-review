@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者用講義詳細</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="midashi">管理者用講義詳細</h1>
+        <p><strong>ID:</strong> {{ course.id }}</p>
+        <p><strong>講義名:</strong> {{ course.name }}</p>
+        <p><strong>先生の名前:</strong> {{ course.teacher }}</p>
+
+        
+        {% if course.reviews %}
+        <h2>レビュー一覧</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>レビュー</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in course.reviews %}
+                <tr>
+                    <td>{{ review.review }}</td>
+                    <td><a href="{{ url_for('delete_review', id=review.review_id) }}">削除</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>レビューがまだありません。</p>
+        {% endif %}
+
+        <a href="{{ url_for('manage') }}">管理者ページに戻る</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>検索結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="midashi">検索結果</h1>
+        
+        {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>講義名</th>
+                    <th>先生の名前</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in results %}
+                <tr>
+                    <td><a href="{{ url_for('course_detail', id=course.id) }}">{{ course.name }}</a></td>
+                    <td>{{ course.teacher }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>結果が見つかりませんでした。</p>
+        {% endif %}
+        <a href="/">ホームに戻る</a>
+    </div>
+</body>
+</html>

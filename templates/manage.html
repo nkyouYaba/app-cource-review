@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者ページ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="midashi">講義リスト</h1>
+        {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>講義名</th>
+                    <th>先生の名前</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in results %}
+                <tr>
+                    <td><a href="{{ url_for('course_detail_admin', id=course.id) }}">{{ course.id }}</a></td>
+                    <td><a href="{{ url_for('course_detail_admin', id=course.id) }}">{{ course.name }}</a></td>
+                    <td>{{ course.teacher }}</td>
+                    <td><a href="/delete/{{ course.id }}">削除</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>結果が見つかりませんでした。</p>
+        {% endif %}
+        <a href="/">ホームに戻る</a>
+    </div>
+</body>
+</html>

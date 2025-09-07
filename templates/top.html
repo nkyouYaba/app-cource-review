@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>ホーム</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="midashi">講義レビュー</h1>
+
+        <p>講義のレビューを追加したい場合は、講義の検索をしてその詳細ページからお願いいたします。</p>
+        <p>講義が検索しても出てこない場合は、講義登録をご自身で行なってから、レビューを追加してください。</p>
+        <hr>
+
+
+        <h2>講義登録</h2>
+        講義名、先生の名前は教務情報システム記載通りにお願いいたします。
+        <!-- Flash メッセージの表示 (講義関連のエラー)-->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    {% if category == 'course_error' %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="/add" method="POST">
+            <input type="text" name="name" placeholder="講義名 (例)知能情報基礎演習 " required>
+            <input type="text" name="teacher" placeholder="先生の名前 (例)名前太郎" required>
+            <button type="submit">追加</button>
+        </form>
+
+        <h2>検索</h2>
+        <form action="/search" method="POST">
+            <input type="text" id="search" name="search" placeholder="講義名、先生の名前"required>
+            <button type="submit">検索</button>
+        </form>
+
+        {% if courses %}
+        <table>
+            <thead>
+                <tr>
+                    <th>講義名</th>
+                    <th>先生の名前</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td><a href="{{ url_for('course_detail', id=course.id) }}">{{ course.name }}</a></td>
+                    <td>{{ course.teacher }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>結果が見つかりませんでした。</p>
+        {% endif %}
+    </div>
+
+    <p class="kuuhaku"></p>
+   
+    <div class="container">
+        <h5>管理者ページへ</h5>
+        <!-- Flash メッセージの表示 (管理者関連のエラー)-->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    {% if category == 'admin_error' %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('admin_login') }}" method="POST">
+            <input type="password" name="password" placeholder="パスワード" required>
+            <button type="submit">管理者ページへ行く</button>
+        </form>
+    </div>
+</body>
+</html>

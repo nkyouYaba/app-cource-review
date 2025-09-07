@@ -1,0 +1,155 @@
+/* 基本スタイル */
+html {
+  font-size: 62.5%; /* 基本のフォントサイズを10pxに設定（1rem = 10px） */
+  box-sizing: border-box; /* ボックスサイズの計算を統一 */
+}
+*, *::before, *::after {
+  box-sizing: inherit; /* 親要素からbox-sizingの設定を継承 */
+}
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* フォントファミリーの設定 */
+  font-weight: 300; /* フォントの太さを設定（細め） */
+  font-size: 1.6rem; /* フォントサイズを設定（16px） */
+  line-height: 1.5; /* 行の高さを設定 */
+  color: #222; /* テキストの色を設定 */
+  background-color: #fff; /* 背景色を白に設定 */
+}
+
+/* コンテナ */
+.container {
+  max-width: 960px; /* 最大幅を960pxに設定 */
+  margin: 0 auto; /* 中央寄せに設定 */
+  padding: 0 20px; /* 水平方向のパディングを20pxに設定 */
+}
+
+/* タイポグラフィ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300; /* 見出しのフォントの太さを設定 */
+  line-height: 1.1; /* 行の高さを設定 */
+  margin-top: 2rem; /* 上マージンをゼロに設定 */
+  margin-bottom: 2rem; /* 下マージンを2remに設定 */
+}
+h1 { font-size: 4.2rem; } /* 見出し1のフォントサイズを設定 */
+h2 { font-size: 3.6rem; } /* 見出し2のフォントサイズを設定 */
+h3 { font-size: 3rem; } /* 見出し3のフォントサイズを設定 */
+h4 { font-size: 2.4rem; } /* 見出し4のフォントサイズを設定 */
+h5 { font-size: 1.8rem; } /* 見出し5のフォントサイズを設定 */
+h6 { font-size: 1.5rem; } /* 見出し6のフォントサイズを設定 */
+p {
+  margin-top: 0; /* 段落の上マージンをゼロに設定 */
+  margin-bottom: 1.5rem; /* 段落の下マージンを1.5remに設定 */
+}
+
+/* ボタン */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block; /* インラインブロック表示に設定 */
+  height: 38px; /* 高さを38pxに設定 */
+  padding: 0 30px; /* 水平方向のパディングを30pxに設定 */
+  font-size: 1.4rem; /* フォントサイズを1.4remに設定 */
+  line-height: 38px; /* 行の高さを38pxに設定 */
+  text-align: center; /* テキストの中央寄せに設定 */
+  text-decoration: none; /* テキストの下線をなしに設定 */
+  white-space: nowrap; /* テキストを改行させないように設定 */
+  background-color: #33C3F0; /* 背景色を設定 */
+  color: #FFF; /* テキストの色を白に設定 */
+  border-radius: 4px; /* 角を4pxの半径で丸める */
+  border: 1px solid transparent; /* ボーダーを透明に設定 */
+  cursor: pointer; /* カーソルをポインタに変更 */
+  box-sizing: border-box; /* ボックスサイズの計算を統一 */
+}
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  background-color: #1EAEDB; /* ホバー時およびフォーカス時の背景色を変更 */
+}
+
+/* フォーム */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  width: 30%; /* 幅を30%に設定 */
+  height: 38px; /* 高さを38pxに設定 */
+  padding: 6px 10px; /* パディングを設定 */
+  background-color: #fff; /* 背景色を白に設定 */
+  border: 1px solid #D1D1D1; /* ボーダーの色を設定 */
+  border-radius: 4px; /* 角を4pxの半径で丸める */
+  box-shadow: none; /* ボックスシャドウをなしに設定 */
+  box-sizing: border-box; /* ボックスサイズの計算を統一 */
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0; /* フォーカス時のボーダー色を変更 */
+  outline: 0; /* アウトラインをなしに設定 */
+}
+
+/* テーブル */
+table {
+  width: 100%; /* 幅を100%に設定 */
+  border-collapse: collapse; /* ボーダーを重ねるように設定 */
+  margin-bottom: 2rem; /* 下マージンを2remに設定 */
+}
+th,
+td {
+  text-align: left; /* 左寄せに設定 */
+  padding: 1rem; /* パディングを1remに設定 */
+  border-bottom: 1px solid #E1E1E1; /* 下ボーダーを設定 */
+}
+th:first-child,
+td:first-child {
+  padding-left: 0; /* 最初のセルの左パディングをなしに設定 */
+}
+th:last-child,
+td:last-child {
+  padding-right: 0; /* 最後のセルの右パディングをなしに設定 */
+}
+
+/* ユーティリティ */
+.u-full-width {
+  width: 100%; /* 幅を100%に設定 */
+  box-sizing: border-box; /* ボックスサイズの計算を統一 */
+}
+.u-max-full-width {
+  max-width: 100%; /* 最大幅を100%に設定 */
+  box-sizing: border-box; /* ボックスサイズの計算を統一 */
+}
+.u-pull-right {
+  float: right; /* 右寄せに設定 */
+}
+.u-pull-left {
+  float: left; /* 左寄せに設定 */
+}
+
+.flashes .course_error,
+.flashes .admin_error {
+    color: red;   /* フラッシュメッセージを赤色に */
+}
+
+.midashi{
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: .5em;
+  background-color: #33C3F0;/* 背景色 */
+  color: #ffffff;/* フォント色 */
+  }
+
+  .kuuhaku {
+    margin-bottom: 100px;
+  }

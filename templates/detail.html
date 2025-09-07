@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>講義詳細</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="midashi">講義詳細</h1>
+        <p><strong>講義名:</strong> {{ course.name }}</p>
+        <p><strong>先生の名前:</strong> {{ course.teacher }}</p>
+        <p><strong>★:</strong> {{ course.star_rating }} / 5</p>
+
+        <h2>レビューの追加</h2>
+        <form action="{{ url_for('add_review', id=course.id) }}" method="post">
+            <textarea name="review" placeholder="レビューを入力"></textarea>
+            <table>
+                <tr>
+                    <td><input type="radio" id="star1" name="rating" value="1"></td>
+                    <td><label for="star1">星1</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="star2" name="rating" value="2"></td>
+                    <td><label for="star2">星2</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="star3" name="rating" value="3" checked></td>
+                    <td><label for="star3">星3</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="star4" name="rating" value="4"></td>
+                    <td><label for="star4">星4</label></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="star5" name="rating" value="5"></td>
+                    <td><label for="star5">星5</label></td>
+                </tr>
+            </table>
+            <button type="submit">レビューを追加</button>
+        </form>
+
+        {% if course.reviews %}
+        <h2>レビュー一覧</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>レビュー</th>
+                    <th>★</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in course.reviews %}
+                <tr>
+                    <td>{{ review.review }}</td>
+                    <td>{{ review.rating }} / 5</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>レビューがまだありません。</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}">ホームに戻る</a>
+    </div>
+</body>
+</html>
